@@ -1,0 +1,25 @@
+{
+    "name": "omaicode/ocms-form-builder",
+    "description": "Best way to build your form",
+    "type": "library",
+    "require": {
+        "php": ">=7.3",
+        "laravel/framework": "^7.0|^8.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bieber Kieu",
+            "email": "thien.kt@omaicode.com"
+        }
+    ],
+    "suggest": {
+        "intervention/image": "Required to handling and manipulation upload images (~2.3).",
+        "spatie/eloquent-sortable": "Required to built orderable gird."
+    },    
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Form",
+    "alias": "form",
+    "type": "composer",
+    "description": "Form module for OCMS",
+    "keywords": [],
+    "priority": 2,
+    "providers": [
+        "Modules\\Form\\Providers\\FormServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "./Helpers/functions.php"
+    ],
+    "requires": []
+}
