@@ -1,6 +1,6 @@
 {
     "name": "omaicode/ocms-form-builder",
-    "description": "Best way to build your form",
+    "description": "Form module for OCMS",
     "type": "library",
     "require": {
         "php": ">=7.3",
