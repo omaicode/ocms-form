@@ -44,8 +44,8 @@ class Slug extends BaseField
                 if(slugManualChanged) return;
                 
                 const val = slugify(e.target.value, '-')
-                $('#{$this->id['slug']}').text(val)
-                $('input[name="{$this->id['slug']}"]').val(val)
+                $('#{$this->id['slug']}').text(val.toLowerCase())
+                $('input[name="{$this->id['slug']}"]').val(val.toLowerCase())
             })
             
             $('#{$this->id['slug']}').editable({

@@ -110,6 +110,12 @@ class Form implements Renderable
      */
     protected $redirectUrl;
 
+    /**
+     * 
+     * @var array
+     */
+    protected array $overrides = [];
+
     public function __construct($model, ?Closure $callback = null)
     {
         $this->builder = new Builder($this);
@@ -180,7 +186,6 @@ class Form implements Renderable
 
         DB::transaction(function () {
             $inserts = $this->prepareInsert($this->updates);
-
             foreach ($inserts as $column => $value) {
                 $this->model->setAttribute($column, $value);
             }
@@ -295,7 +300,6 @@ class Form implements Renderable
         }
 
         $this->relations = $this->getRelationInputs($this->inputs);
-
         $this->updates = Arr::except($this->inputs, array_keys($this->relations));
     }
     
@@ -383,7 +387,6 @@ class Form implements Renderable
 
         DB::transaction(function () {
             $updates = $this->prepareUpdate($this->updates);
-
             foreach ($updates as $column => $value) {
                 /* @var Model $this ->model */
                 $this->model->setAttribute($column, $value);
@@ -791,12 +794,13 @@ class Form implements Renderable
         if ($this->isHasOneRelation($inserts)) {
             $inserts = Arr::dot($inserts);
         }
-
-        foreach ($inserts as $column => $value) {
+        foreach ($inserts as $column => $value) {       
             if (($field = $this->getFieldByColumn($column)) !== null) {
                 $inserts[$column] = $field->prepare($value);
             } else if(($tool = $this->getToolsByColumn($column)) !== null) {
                 $inserts[$column] = $tool->prepare($value);
+            } else if(in_array($column, $this->overrides)) {
+                $inserts[$column] = $value;
             } else {
                 unset($inserts[$column]);
             }
@@ -1284,6 +1288,15 @@ class Form implements Renderable
     protected function onUpdated()
     {
         \request()->session()->flash('toast_success', __('form::messages.updated'));
+    }
+
+    public function overrides(...$args)
+    {
+        foreach($args as $val) {
+            $this->overrides[] = $val;
+        }
+
+        return $this;
     }
 
 
