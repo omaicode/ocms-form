@@ -5,7 +5,7 @@ use Closure;
 use Exception;
 use Modules\Form\Builder;
 use Modules\Form\Fields\BaseField;
-use Modules\Media\MediaCollections\Models\Media as ModelsMedia;
+use Modules\Media\Entities\Media as ModelsMedia;
 
 class Media extends BaseField
 {    
@@ -68,15 +68,11 @@ class Media extends BaseField
 
         if($this->form) {
             $this->value = $this->form->model()[$this->column];
-            $preview = ModelsMedia::where('uuid', $this->value)->first();
+            $preview = $this->form->model()->getMediaUrl($this->column);
         }
 
         if(!$this->url) {
             $this->url = url('/'.config('core.admin_prefix', 'admin').'/media/api');
-        }
-        
-        if($preview) {
-            $preview = $preview->preview_url;
         }
 
         $this->addVariables([
