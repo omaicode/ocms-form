@@ -68,7 +68,9 @@ class Media extends BaseField
 
         if($this->form) {
             $this->value = $this->form->model()[$this->column];
-            $preview = $this->form->model()->getMediaUrl($this->column);
+            if($this->value) {
+                $preview = $this->form->model()->getMediaUrl($this->column);
+            }
         }
 
         if(!$this->url) {
