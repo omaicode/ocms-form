@@ -5,6 +5,7 @@ use Illuminate\Support\Arr;
 use Modules\Form\Display;
 use Modules\Form\Fields\Ckeditor;
 use Modules\Form\Fields\Password;
+use Modules\Form\Fields\QuillEditor;
 use Modules\Form\Fields\Select;
 use Modules\Form\Fields\Slug;
 use Modules\Form\Fields\Text;
@@ -18,6 +19,7 @@ use Modules\Form\Fields\Textarea;
  * @method Modules\Form\Fields\Password    password($column, $label = '')
  * @method Modules\Form\Fields\Display     display($column, $label = '')
  * @method Modules\Form\Fields\Ckeditor    ckeditor($column, $label = '')
+ * @method Modules\Form\Fields\QuillEditor    quillEditor($column, $label = '')
  */
 trait HasFields
 {
@@ -34,6 +36,7 @@ trait HasFields
         'password'  => Password::class,
         'display'   => Display::class,
         'ckeditor'  => Ckeditor::class,
+        'quillEditor' => QuillEditor::class
     ];
 
     /**
