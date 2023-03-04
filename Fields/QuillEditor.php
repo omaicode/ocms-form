@@ -13,6 +13,7 @@ class QuillEditor extends BaseField
         '/modules/form/css/quill.snow.css',
     ];
     protected static $js = [
+        '/modules/form/js/hightlight.js',
         '/modules/form/js/quill.min.js',
         '/modules/form/js/quill.html-editor.js',
     ];
